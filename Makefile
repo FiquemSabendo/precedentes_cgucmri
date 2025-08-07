@@ -2,7 +2,7 @@
 
 download_files: data/processed/download_commands.txt
 	cat $< \
-		| xargs -L1 -P5 wget
+		| xargs -L1 -P8 wget
 
 data/raw/BuscaPrecedentes.csv:
 	@mkdir -p data/raw
@@ -19,6 +19,6 @@ data/processed/download_commands.txt: data/processed/busca_precedentes.csv
 	@mkdir -p data/raw/files
 	cat $< \
 		| grep -v "NomeArquivo;LinkArquivo" \
-		| sed -E 's/^([^;]*;){6}([^;]*);(.*)/--no-clobber "\3" -O "data\/raw\/files\/\2"/' \
+		| awk -f generate_wget_commands.awk \
 		> $@
 
