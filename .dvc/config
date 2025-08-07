@@ -2,3 +2,5 @@
     remote = storage
 ['remote "storage"']
     url = s3://fs-data-lake/data/dvc/precedentes_cgucmri
+    profile = fs
+    endpointurl = https://nyc3.digitaloceanspaces.com/
